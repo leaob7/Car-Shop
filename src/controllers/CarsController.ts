@@ -1,6 +1,7 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { Car } from '../interfaces/CarInterface';
 import CarsService from '../services/CarsService';
+import PostCarSchema from '../Schemas/ValidationSchemas';
 import Controller from '.';
 
 class CarsController extends Controller<Car> {
@@ -16,10 +17,23 @@ class CarsController extends Controller<Car> {
 
   get route() { return this._route; }
 
+  validation = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await PostCarSchema.parseAsync({
+        body: req.body,
+        query: req.query,
+        params: req.params,
+      });
+      next();
+    } catch (e) {
+      return res.status(400).json(e);
+    }
+  };
+
   create = async (req: Request, res: Response): Promise<typeof res> => {
     try {
-      const car = await this.service.create(req.body);
-      return res.status(201).json(car);
+      const createCar = await this.service.create(req.body);
+      return res.status(201).json(createCar);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
     }

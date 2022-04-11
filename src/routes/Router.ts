@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, RequestHandler } from 'express';
 import Controller from '../controllers';
 
 class CustomRouter<T> {
@@ -9,12 +9,13 @@ class CustomRouter<T> {
   }
 
   public addRoute(
+    validation: RequestHandler,
     controller: Controller<T>,
     route: string = controller.route,
   ) {
     this.router.get(route, controller.read);
     this.router.get(`${route}/:id`, controller.readOne);
-    this.router.post(route, controller.create);
+    this.router.post(route, validation, controller.create);
   }
 }
 
