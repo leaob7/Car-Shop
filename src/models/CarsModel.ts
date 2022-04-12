@@ -1,10 +1,8 @@
-import { Schema, model as createModel, Document } from 'mongoose';
+import { Schema, model as createModel } from 'mongoose';
 import { Car } from '../interfaces/CarInterface';
 import MongoModel from './MongoModel';
 
-interface CarDocument extends Car, Document {}
-
-const carSchema = new Schema<CarDocument>({
+const carSchema = new Schema<Car>({
   model: String,
   year: Number,
   color: String,
@@ -13,7 +11,7 @@ const carSchema = new Schema<CarDocument>({
   seatsQty: Number,
 });
 
-class CarsModel extends MongoModel<CarDocument> {
+class CarsModel extends MongoModel<Car> {
   constructor(model = createModel('Cars', carSchema)) {
     super(model);
   }
