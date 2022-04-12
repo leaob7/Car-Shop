@@ -1,16 +1,10 @@
 import { expect } from 'chai';
-import mongoose from 'mongoose';
 import * as sinon from 'sinon';
-import { Car } from '../../../interfaces/CarInterface';
-import MongoModel  from '../../../models/MongoModel'
 import { coverageCar, validCar, updatedCar } from '../../../../__tests__/utils/CarsMock'
+import CarsModel from '../../../models/CarsModel';
  
 describe('Generic MongoModel', () => {
-  const genericSchema = new mongoose.Schema({
-    model: String,
-    year: Number,
-  });
-  const genericModel = new MongoModel<Car>(mongoose.model('Generic', genericSchema));
+  const genericModel = new CarsModel();
 
 
   describe('#create', () => {

@@ -5,7 +5,7 @@ export interface ServiceError {
   error: ZodError;
 }
 
-abstract class Service<T> {
+class Service<T> {
   constructor(protected model: Model<T>) { }
 
   public async create(obj: T): Promise<T | null | ServiceError> {
