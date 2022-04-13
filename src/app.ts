@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import connectToDatabase from './connection';
 import CarsRoute from './routes/CarsRouter';
+import MotorcycleRoute from './routes/MotorcycleRouter';
 
 class App {
   public app: express.Application;
@@ -25,6 +26,7 @@ class App {
 
   public routes() {
     this.app.use('/cars', CarsRoute);
+    this.app.use('/motorcycles', MotorcycleRoute);
   }
 
   public getApp() {

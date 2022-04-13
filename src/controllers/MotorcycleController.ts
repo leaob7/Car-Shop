@@ -21,6 +21,11 @@ class MotorcycleController extends Controller<Motorcycle> {
     try {
       const { id } = req.params;
       const motorcycle = await this.service.readOne(id);
+
+      if (!motorcycle) {
+        return res.status(404).json({ error: 'Object not found' });
+      }
+
       return res.status(200).json(motorcycle);
     } catch (e) {
       return res.status(500).json({ error: this.errors.internal });
@@ -31,6 +36,11 @@ class MotorcycleController extends Controller<Motorcycle> {
     try {
       const { id } = req.params;
       const motorcycle = await this.service.update(id, req.body);
+
+      if (!motorcycle) {
+        return res.status(404).json({ error: 'Object not found' });
+      }
+      
       return res.status(200).json(motorcycle);
     } catch (e) {
       return res.status(500).json({ error: this.errors.internal });
