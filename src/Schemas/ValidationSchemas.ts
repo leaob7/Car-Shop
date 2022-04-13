@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const PostCarSchema = z.object({
+export const PostCarSchema = z.object({
   body: z.object({
     model: z.string().nonempty()
       .min(3, { message: 'Model must have at least 3 characters' }),
@@ -16,4 +16,11 @@ const PostCarSchema = z.object({
   }),
 });
 
-export default PostCarSchema;
+export const ReadOneSchema = z.object({
+  params: z.object({
+    id: z.string().min(
+      24,
+      { message: 'Id must have 24 hexadecimal characters' },
+    ).optional(),
+  }),
+});

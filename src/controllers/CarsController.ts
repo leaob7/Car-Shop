@@ -1,34 +1,14 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { Car } from '../interfaces/CarInterface';
 import CarsService from '../services/CarsService';
-import PostCarSchema from '../Schemas/ValidationSchemas';
 import Controller from '.';
 
 class CarsController extends Controller<Car> {
-  private _route: string;
-
   constructor(
     service = new CarsService(),
-    route = '/cars',
   ) {
     super(service);
-    this._route = route;
   }
-
-  get route() { return this._route; }
-
-  validation = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await PostCarSchema.parseAsync({
-        body: req.body,
-        query: req.query,
-        params: req.params,
-      });
-      next();
-    } catch (e) {
-      return res.status(400).json(e);
-    }
-  };
 
   create = async (req: Request, res: Response): Promise<typeof res> => {
     try {
@@ -43,6 +23,13 @@ class CarsController extends Controller<Car> {
     try {
       const { id } = req.params;
       const car = await this.service.readOne(id);
+
+      if (!car) {
+        return res.status(404).json(
+          { error: 'Object not found' },
+        );
+      }
+
       return res.status(200).json(car);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
@@ -53,6 +40,13 @@ class CarsController extends Controller<Car> {
     try {
       const { id } = req.params;
       const car = await this.service.update(id, req.body);
+
+      if (!car) {
+        return res.status(404).json(
+          { error: 'Object not found' },
+        );
+      }
+      
       return res.status(200).json(car);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
