@@ -24,3 +24,17 @@ export const ReadOneSchema = z.object({
     ).optional(),
   }),
 });
+
+export const PostMotorcyleSchema = z.object({
+  body: z.object({
+    model: z.string().nonempty()
+      .min(3, { message: 'Model must have at least 3 characters' }),
+    year: z.number().gte(1900, { message: 'Year must be graten than 1900' }),
+    color: z.string().nonempty()
+      .min(3, { message: 'Color must have at least 3 characters' }),
+    status: z.boolean().optional(),
+    buyValue: z.number().int(),
+    category: z.enum(['Street', 'Custom', 'Trail']),
+    engineCapacity: z.number().int().positive().lte(2500),
+  }),
+});

@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import CarsController from '../controllers/CarsController';
-import Validation from '../middlewares/Validation';
+import CarsValidation from '../middlewares/CarsValidation';
 
 const CarsRoute = Router();
 
 const carsController = new CarsController();
-const validation = new Validation();
+const validation = new CarsValidation();
 
 CarsRoute.get('/', carsController.read);
 
