@@ -23,8 +23,8 @@ abstract class Controller<T> {
     res: Response,
   ): Promise<typeof res> => {
     try {
-      const cars = await this.service.read();
-      return res.status(200).json(cars);
+      const response = await this.service.read();
+      return res.status(200).json(response);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
     }
