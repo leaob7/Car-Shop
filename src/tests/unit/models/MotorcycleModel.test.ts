@@ -12,6 +12,16 @@ const motorcyleModel = new MotorcycleModel();
 
 const validMotorcycleMock = validMotorcycle as Motorcycle; 
 const coverageMotorcycleMock = coverageMotorcycle as Motorcycle;
+const updatedMotorcycleMock = updatedMotorcycle as Motorcycle;
+
+const bodyUpdateMock = {
+  model: 'Honda CG Titan 125',
+  year: 1963,
+  color: 'black',
+  buyValue: 3500,
+  category: 'Street',
+  engineCapacity: 125
+} as Motorcycle;
 
   describe('#create', () => {
 
@@ -70,7 +80,7 @@ const coverageMotorcycleMock = coverageMotorcycle as Motorcycle;
 
   describe('#update', () => {
     before(() => {
-      sinon.stub(motorcyleModel, "update").resolves(validMotorcycleMock);
+      sinon.stub(motorcyleModel, "update").resolves(updatedMotorcycleMock);
     })
 
     after(() => {
@@ -78,10 +88,10 @@ const coverageMotorcycleMock = coverageMotorcycle as Motorcycle;
     })
 
     it('Deve retornar o objeto atualizado', async () => {
-      const response = await motorcyleModel.update(`${validMotorcycle._id}`, coverageMotorcycleMock);
+      const response = await motorcyleModel.update(`${validMotorcycle._id}`, bodyUpdateMock);
 
       expect(response).to.be.an('object');
-      expect(response).to.deep.equal(validMotorcycle);
+      expect(response).to.deep.equal(updatedMotorcycle);
     })
   })
 
