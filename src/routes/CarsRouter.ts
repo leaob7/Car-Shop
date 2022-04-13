@@ -9,10 +9,12 @@ const validation = new Validation();
 
 CarsRoute.get('/', carsController.read);
 
-CarsRoute.get('/:id', validation.readOneValidation, carsController.readOne);
+CarsRoute.get('/:id', validation.paramsValidation, carsController.readOne);
 
-CarsRoute.post('/', validation.createValidation, carsController.create);
+CarsRoute.post('/', validation.bodyValidation, carsController.create);
 
-CarsRoute.put('/:id', validation.readOneValidation, carsController.update);
+CarsRoute.put('/:id', validation.paramsValidation, carsController.update);
+
+CarsRoute.delete('/:id', carsController.delete);
 
 export default CarsRoute;

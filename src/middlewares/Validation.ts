@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { PostCarSchema, ReadOneSchema } from '../Schemas/ValidationSchemas';
 
 class Validation {
-  createValidation = async (
+  bodyValidation = async (
     req: Request,
     res: Response,
     next: NextFunction,
@@ -22,7 +22,7 @@ class Validation {
     }
   };
 
-  readOneValidation = async (
+  paramsValidation = async (
     req: Request,
     res: Response,
     next: NextFunction,
