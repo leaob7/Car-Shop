@@ -3,7 +3,7 @@ import * as sinon from 'sinon';
 import { coverageCar, validCar, updatedCar } from '../../../../__tests__/utils/CarsMock'
 import CarsModel from '../../../models/CarsModel';
  
-describe('Generic MongoModel', () => {
+describe('Cars Model', () => {
   const genericModel = new CarsModel();
 
 

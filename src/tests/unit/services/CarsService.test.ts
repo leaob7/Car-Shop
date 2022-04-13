@@ -4,7 +4,7 @@ import CarsModel from '../../../models/CarsModel';
 import { coverageCar, validCar, updatedCar } from '../../../../__tests__/utils/CarsMock'
 import CarsService from '../../../services/CarsService';
  
-describe('Generic Service', () => {
+describe('Cars Service', () => {
 
   const carsModel = new CarsModel;
   const genericService = new CarsService(carsModel);
