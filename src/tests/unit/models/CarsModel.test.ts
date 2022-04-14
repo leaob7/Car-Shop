@@ -4,13 +4,13 @@ import { coverageCar, validCar, updatedCar } from '../../../../__tests__/utils/C
 import CarsModel from '../../../models/CarsModel';
  
 describe('Cars Model', () => {
-  const genericModel = new CarsModel();
+  const carsModel = new CarsModel();
 
 
   describe('#create', () => {
   
     before(() => {
-      sinon.stub(genericModel, "create").resolves(validCar);
+      sinon.stub(carsModel, "create").resolves(validCar);
     })
 
     after(() => {
@@ -18,7 +18,7 @@ describe('Cars Model', () => {
     })
   
     it('Deve retornar o objeto criado', async () => {
-      const response = await genericModel.create(coverageCar);
+      const response = await carsModel.create(coverageCar);
 
       expect(response).to.be.an('object');
       expect(response).to.have.property('_id');
@@ -32,7 +32,7 @@ describe('Cars Model', () => {
     const responseMock = [validCar];
 
     before(() => {
-      sinon.stub(genericModel, "read").resolves(responseMock);
+      sinon.stub(carsModel, "read").resolves(responseMock);
     })
 
     after(() => {
@@ -40,7 +40,7 @@ describe('Cars Model', () => {
     })
 
     it('Deve retornar um array', async () => {
-      const response = await genericModel.read();
+      const response = await carsModel.read();
 
       expect(response).to.be.an('array');
       expect(response).to.be.deep.equal(responseMock);
@@ -50,7 +50,7 @@ describe('Cars Model', () => {
   describe('#readOne', () => {
 
     before(() => {
-      sinon.stub(genericModel, "readOne").resolves(validCar);
+      sinon.stub(carsModel, "readOne").resolves(validCar);
     })
 
     after(() => {
@@ -58,7 +58,7 @@ describe('Cars Model', () => {
     })
 
     it('Deve retornar o objeto correto', async () => {
-      const response = await genericModel.readOne(`${validCar._id}`);
+      const response = await carsModel.readOne(`${validCar._id}`);
 
       expect(response).to.be.an('object');
       expect(response).to.be.deep.equal(validCar);
@@ -68,7 +68,7 @@ describe('Cars Model', () => {
   describe('#update', () => {
 
     before(() => {
-      sinon.stub(genericModel, "update").resolves(updatedCar);
+      sinon.stub(carsModel, "update").resolves(updatedCar);
     })
 
     after(() => {
@@ -85,7 +85,7 @@ describe('Cars Model', () => {
     }
 
     it('Deve retornar o objeto atualizado', async () => {
-      const response = await genericModel.update(`${validCar._id}`, updatedCarBody);
+      const response = await carsModel.update(`${validCar._id}`, updatedCarBody);
 
       expect(response).to.be.an('object');
       expect(response).to.be.deep.equal(updatedCar);
@@ -95,7 +95,7 @@ describe('Cars Model', () => {
   describe('#delete', () => {
 
     before(() => {
-      sinon.stub(genericModel, "delete").resolves(validCar);
+      sinon.stub(carsModel, "delete").resolves(validCar);
     })
 
     after(() => {
@@ -103,7 +103,7 @@ describe('Cars Model', () => {
     })
 
     it('Deve retornar o objeto deletado', async () => {
-      const response = await genericModel.delete(`${validCar._id}`);
+      const response = await carsModel.delete(`${validCar._id}`);
 
       expect(response).to.be.an('object');
       expect(response).to.be.deep.equal(validCar);
