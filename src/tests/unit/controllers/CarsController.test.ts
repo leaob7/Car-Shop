@@ -1,7 +1,7 @@
 import chai from 'chai';
 import * as sinon from 'sinon';
 import { Request, Response } from 'express';
-import { validCar, updatedCar } from '../../../../__tests__/utils/CarsMock'
+import { validCar, updatedCar } from '../../../utils/CarsMock'
 import CarsController from '../../../controllers/CarsController';
 
 const { expect } = chai;

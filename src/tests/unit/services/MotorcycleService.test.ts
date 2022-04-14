@@ -1,6 +1,6 @@
 import chai from 'chai';
 import * as sinon from 'sinon';
-import { validMotorcycle, coverageMotorcycle, updatedMotorcycle } from '../../../../__tests__/utils/MotorcyclesMock'
+import { validMotorcycle, coverageMotorcycle, updatedMotorcycle } from '../../../utils/MotorcyclesMock'
 import { Motorcycle } from '../../../interfaces/MotorcycleInterface';
 import MotorcycleModel from '../../../models/MotorcycleModel';
 import MotorcycleService from '../../../services/MotorcycleService';

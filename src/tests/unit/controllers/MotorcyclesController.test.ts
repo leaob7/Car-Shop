@@ -1,7 +1,7 @@
 import chai from 'chai';
 import * as sinon from 'sinon';
 import { Request, Response } from 'express';
-import { validMotorcycle, updatedMotorcycle } from '../../../../__tests__/utils/MotorcyclesMock';
+import { validMotorcycle, updatedMotorcycle } from '../../../utils/MotorcyclesMock';
 import MotorcycleController from '../../../controllers/MotorcycleController';
 import { MockMotorcycle, MockUpdatedMotorcycle } from '../../../interfaces/MockInterfaces';
 

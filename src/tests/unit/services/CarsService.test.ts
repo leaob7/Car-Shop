@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as sinon from 'sinon';
 import CarsModel from '../../../models/CarsModel';
-import { coverageCar, validCar, updatedCar } from '../../../../__tests__/utils/CarsMock'
+import { coverageCar, validCar, updatedCar } from '../../../utils/CarsMock'
 import CarsService from '../../../services/CarsService';
  
 describe('Cars Service', () => {
