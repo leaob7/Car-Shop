@@ -16,7 +16,7 @@ export const PostCarSchema = z.object({
   }),
 });
 
-export const ReadOneSchema = z.object({
+export const ParamsSchema = z.object({
   params: z.object({
     id: z.string().min(
       24,

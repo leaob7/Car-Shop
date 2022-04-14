@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { NextFunction, Request, Response } from 'express';
 import {
-  ReadOneSchema,
+  ParamsSchema,
   PostMotorcyleSchema,
 } from '../Schemas/ValidationSchemas';
 
@@ -31,7 +31,7 @@ class MotorCycleValidation {
     next: NextFunction,
   ) => {
     try {
-      await ReadOneSchema.parseAsync({
+      await ParamsSchema.parseAsync({
         params: req.params,
       });
 
