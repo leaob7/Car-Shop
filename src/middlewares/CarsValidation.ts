@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { NextFunction, Request, Response } from 'express';
-import { PostCarSchema, ReadOneSchema } from '../Schemas/ValidationSchemas';
+import { PostCarSchema, ParamsSchema } from '../Schemas/ValidationSchemas';
 
 class Validation {
   bodyValidation = async (
@@ -28,7 +28,7 @@ class Validation {
     next: NextFunction,
   ) => {
     try {
-      await ReadOneSchema.parseAsync({
+      await ParamsSchema.parseAsync({
         params: req.params,
       });
 
